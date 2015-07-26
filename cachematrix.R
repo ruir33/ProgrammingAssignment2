@@ -1,3 +1,5 @@
+### Warning: Identation looks good on vi editor, but not on notepad ++ !  Sorry !
+
 ## And now function:   makeCacheMatrix
 ## ... Lets see it ! 
 
