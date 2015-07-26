@@ -10,12 +10,12 @@ makeCacheMatrix <- function(x = matrix()) {
         ##              3. setinv - set the inverse
         ##              4. getinv - get the inverse
         ##         this list is used as the input to cacheSolve()
-		##
-		## Because it uses <<- assignment operator, these variables are not exposed 
-		## to the outside environment
+	##
+	## Because it uses <<- assignment operator, these variables are not exposed 
+	## to the outside environment
         		
 		
-		# inv var is where we are going to store the result of inversion
+	# inv var is where we are going to store the result of inversion
         inv = NULL
 		
         set = function(y) {
@@ -25,23 +25,23 @@ makeCacheMatrix <- function(x = matrix()) {
                 inv <<- NULL
         }
 		
-		# Let return the input matrix
+	# Lets return the input matrix
         get = function() x
 		
-		# Lets set the inversed matrix
+	# Lets set the inversed matrix
         setinv = function(inverse) inv <<- inverse 
 		
-		# Lets return the inversed matrix
+	# Lets return the inversed matrix
         getinv = function() inv
 		
 		
-		# Next, lets return a list with these functions,
-		# so that it will be possible to use makeCacheMatrix like this:
-		# x <- makeCacheMatrix(demo_matrix)
-		# x$set(new_matrix) - to change matrix
-		# x$get 			- to get the setted matrix
-		# x$setinv 			- to set the inversed matrix
-		# x$getinv 			- to get the inversed matrix
+	# Next, lets return a list with these functions,
+	# so that it will be possible to use makeCacheMatrix like this:
+	# x <- makeCacheMatrix(demo_matrix)
+	# x$set(new_matrix) - to change matrix
+	# x$get 			- to get the setted matrix
+	# x$setinv 			- to set the inversed matrix
+	# x$getinv 			- to get the inversed matrix
         list(set=set, get=get, setinv=setinv, getinv=getinv)
 }
 
@@ -57,12 +57,12 @@ cacheSolve <- function(x, ...) {
         ## Input parameter: x: output of makeCacheMatrix()  [set,get,setinv,getinv]
         ## return: inverse of the matrix input to makeCacheMatrix()
         
-		# Lets get the inversed matrix from object x 
+	# Lets get the inversed matrix from object x 
         inv = x$getinv()
         
 		
         # if the inverse has already been calculated it wont be NULL,
-		# and we can use the cache to speed up this process ...
+	# and we can use the cache to speed up this process ...
         if (!is.null(inv)){
                 # Ok ! Lets get it from the cache and skip the computation. 
                 message("Getting cached data")
@@ -70,9 +70,9 @@ cacheSolve <- function(x, ...) {
         }
         
         # Not OK ! First time !  We still have to calculate the inverse !
-		# Lets get the matrix object ...
+	# Lets get the matrix object ...
         matrix.data = x$get()
-		# Lets get it using r resources (solve function)
+	# Lets get it using r resources (solve function)
         inv = solve(matrix.data, ...)
         
         # sets the value of the inverse in the cache via the setinv function.
@@ -121,6 +121,4 @@ cacheSolve <- function(x, ...) {
 #[3,]  0.066706872
 #[4,] -0.012245038
 
-
-
-
+### END ###
